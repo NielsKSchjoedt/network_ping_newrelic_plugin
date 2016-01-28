@@ -31,7 +31,7 @@ module NetworkPingNewrelicPlugin
             if success
               puts "Success: #{hostname}: #{ping}"
             else
-              puts "Failure: #{hostname}: #{ping}")
+              puts "Failure: #{hostname}: #{ping}"
             end
 
             report_metric "PingTime/#{hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
