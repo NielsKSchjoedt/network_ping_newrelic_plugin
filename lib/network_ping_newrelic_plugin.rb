@@ -29,6 +29,13 @@ module NetworkPingNewrelicPlugin
 
             success = ping_time > 0.0
 
+            # Uncomment for debugging
+            # if success
+            #   puts "SUCCESS: #{ping}"
+            # else
+            #   puts "FAILURE: #{ping}"
+            # end
+
             report_metric "PingTime/#{hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
             report_metric "PingTimeEndToEnd/#{hostname}/#{@current_hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
 
