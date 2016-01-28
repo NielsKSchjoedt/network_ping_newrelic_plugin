@@ -24,17 +24,17 @@ module NetworkPingNewrelicPlugin
       begin
         hosts.each do |hostname|
           unless hostname == @current_hostname
-            ping = `ping -c 1 -W #{@timeout} #{hostname} `
+            ping = `ping -c 1 #{hostname}`
             ping_time = ping[/time=(\d+\.\d+) ms/, 1].to_f
 
             success = ping_time > 0.0
 
-            # Uncomment for debugging
-            if success
-              puts "SUCCESS: #{ping}\n"
-            else
-              puts "FAILURE: #{ping}\n"
-            end
+            # # Uncomment for debugging
+            # if success
+            #   puts "SUCCESS: #{ping}\n"
+            # else
+            #   puts "FAILURE: #{ping}\n"
+            # end
 
             report_metric "PingTime/#{hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
             report_metric "PingTimeEndToEnd/#{hostname}/#{@current_hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
@@ -42,11 +42,11 @@ module NetworkPingNewrelicPlugin
             report_metric "PingFailures/#{hostname}", "count", (success ? 0 : 1)
             report_metric "PingFailuresEndToEnd/#{hostname}/#{@current_hostname}", "count", (success ? 0 : 1)
 
-            puts "DEBUG: PingTime/#{hostname}: #{(success ? ping_time : @timeout * 1000.0)}"
-            puts "DEBUG: PingTimeEndToEnd/#{hostname}/#{@current_hostname}: #{(success ? ping_time : @timeout * 1000.0)}"
-            puts "DEBUG: PingFailures/#{hostname}: #{(success ? 0 : 1)}"
-            puts "DEBUG: PingFailuresEndToEnd/#{hostname}/#{@current_hostname}: #{(success ? 0 : 1)}"
-            puts "\n"
+            # puts "DEBUG: PingTime/#{hostname}: #{(success ? ping_time : @timeout * 1000.0)}"
+            # puts "DEBUG: PingTimeEndToEnd/#{hostname}/#{@current_hostname}: #{(success ? ping_time : @timeout * 1000.0)}"
+            # puts "DEBUG: PingFailures/#{hostname}: #{(success ? 0 : 1)}"
+            # puts "DEBUG: PingFailuresEndToEnd/#{hostname}/#{@current_hostname}: #{(success ? 0 : 1)}"
+            # puts "\n"
           end
         end
       rescue Exception => e
