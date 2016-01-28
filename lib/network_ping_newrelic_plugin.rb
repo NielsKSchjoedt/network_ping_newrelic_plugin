@@ -24,15 +24,10 @@ module NetworkPingNewrelicPlugin
       begin
         hosts.each do |hostname|
           unless hostname == @current_hostname
-            ping = `ping -c 1 -t #{@timeout} #{hostname} `
+            ping = `ping -c 1 -W #{hostname} `
             ping_time = ping[/time=(\d+\.\d+) ms/, 1].to_f
 
             success = ping_time > 0.0
-            if success
-              puts "Success: #{hostname}: #{ping}"
-            else
-              puts "Failure: #{hostname}: #{ping}"
-            end
 
             report_metric "PingTime/#{hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
             report_metric "PingTimeEndToEnd/#{hostname}/#{@current_hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
