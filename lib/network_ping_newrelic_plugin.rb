@@ -17,14 +17,14 @@ module NetworkPingNewrelicPlugin
 
     def setup_metrics
       @current_hostname = `hostname`.strip
-      @timeout = 5
+      @timeout = 5 #Seconds
     end
 
     def poll_cycle
       begin
         hosts.each do |hostname|
           unless hostname == @current_hostname
-            ping = `ping -c 1 -W #{hostname} `
+            ping = `ping -c 1 -W #{@timeout} #{hostname} `
             ping_time = ping[/time=(\d+\.\d+) ms/, 1].to_f
 
             success = ping_time > 0.0
