@@ -6,6 +6,4 @@ require 'bundler/setup'
 
 require File.expand_path("../../lib/network_ping_newrelic_plugin.rb", __FILE__)
 
-Dante.run('network_ping_newrelic_plugin') do |opts|
-  NetworkPingNewrelicPlugin::AgentRunner.new.run!
-end
+NetworkPingNewrelicPlugin::AgentRunner.new.run!

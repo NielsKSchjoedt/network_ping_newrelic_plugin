@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
 
   s.add_dependency 'newrelic_plugin'
-  s.add_dependency 'dante'
 
   s.add_development_dependency "bundler", "~> 1.10"
 end
