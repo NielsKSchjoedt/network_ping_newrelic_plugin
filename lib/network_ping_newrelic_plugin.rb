@@ -29,9 +29,9 @@ module NetworkPingNewrelicPlugin
 
             success = ping_time > 0.0
             if success
-              NewRelic::PlatformLogger.info("#{hostname}: #{ping}")
+              puts "Success: #{hostname}: #{ping}"
             else
-              NewRelic::PlatformLogger.warn("#{hostname}: #{ping}")
+              puts "Failure: #{hostname}: #{ping}")
             end
 
             report_metric "PingTime/#{hostname}", "ms", (success ? ping_time : @timeout * 1000.0)
