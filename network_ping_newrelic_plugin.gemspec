@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'newrelic_plugin'
   s.add_dependency 'dante'
+  s.add_dependency 'json', '1.8.6'
 
-  s.add_development_dependency "bundler", "~> 1.10"
+  s.add_development_dependency "bundler", "~> 1.17"
 end
